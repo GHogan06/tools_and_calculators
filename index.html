@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools</title>
+    <!-- W3CSS, styles.css and leaflet CSS styles -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+</head>
+<body class="w3-light-grey" id="body">
+    <!-- Title and Dark Mode Button -->
+    <h1 class="w3-red w3-center remove-margin">Tools and Calculators</h1>
+    <div class="w3-panel w3-margin">
+        <label for="dark_mode">Toggle Dark Mode</label>
+        <input type="checkbox" class="dark-mode-inputs" name="dark_mode" id="dark_mode">
+    </div>
+    <!-- Date Calculator and Calendar -->
+    <button class="expand-button">Date Calculator</button>
+    
+    <div class="w3-panel w3-margin w3-padding w3-round-xlarge w3-white dark-mode tools" id="dayCalculator">
+        <h2 class="w3-center">Date Calculator</h2>
+        <div class="w3-third w3-center">
+            <p>Please input a date</p>
+            <label for="day_input">Input Date (dd/mm/yyyy):</label>
+            <input type="number" min="1" max="31" name="day_input" id="day_input">
+            <input type="number" min="1" max="12" name="month_input" id="month_input">
+            <input type="number" min="1800" max="2200" value="2026" name="year_input" id="year_input">
+            <button type="button" class="w3-button w3-margin-top w3-blue w3-round-large" id="submitDate">Calculate Day</button>
+            <p class="hidden" id="result_date_text"><span id="chosen_month"></span> <span id="chosen_date"></span>, <span id="chosen_year"></span> <span id="tense"></span> on a <span id="fall_date"></span></p>
+            <p class="hidden" id="days_ago_text">This date <span id="date_tense"></span></p>
+        </div>
+        <!-- Calendar section -->
+        <div class="w3-twothird w3-center">
+            <h2 id="month_calendar"></h2>
+            <table class="w3-table w3-striped" id="date_table">
+
+            </table>
+        </div>
+        
+    </div>
+    <!-- Currency Convertor -->
+    <button class="expand-button">Currency Converter</button>
+    <div class="w3-panel w3-margin w3-padding w3-round-xlarge w3-white dark-mode tools" id="currencyConvertor">
+        <h2 class="w3-center">Currency Converter</h2>
+        <div class="w3-container">
+            <!-- Left Currency -->
+            <div class="w3-half w3-center">
+                <form>
+                    <div>
+                        <label for="currency_1">Choose a currency</label><br>
+                        <select name="currency_one" class="dark-mode-inputs" id="currency_1">
+                            <option value="usd">US Dollar ($)</option>
+                            <option value="gbp"> British Pound (£)</option>
+                            <option value="eur">Euro (€)</option>
+                            <option value="jpy">Japanese Yen (¥)</option>
+                            <option value="aud">Australian Dollar (A$)</option>    
+                        </select>
+                    </div>
+                    <div class="w3-center">
+                        <img id="left_currency_image" class="w3-image w3-margin-top w3-margin-bottom image_adjust" src="images/usdollar.jpg" alt="Image for currency 1" width="75%">
+                    </div>
+                    <div>
+                        <input type="number" class="dark-mode-inputs click" name="left_currency" min="0" id="left_currency">
+                        <label for="left_currency" id="left_currency_label">Dollars</label>
+                    </div>
+                
+                </form>
+            
+            </div>
+            <!-- Right Currency -->
+            <div class="w3-half w3-center">
+                <form>
+                    <div>
+                        <label for="currency_2">Choose a currency</label><br>
+                        <select name="currency_two" class="dark-mode-inputs" id="currency_2">
+                            <option value="usd">US Dollar ($)</option>
+                            <option value="gbp"> British Pound (£)</option>
+                            <option value="eur">Euro (€)</option>
+                            <option value="jpy">Japanese Yen (¥)</option>
+                            <option value="aud">Australian Dollar (A$)</option>
+                        </select>
+                    </div>
+                    <div class="w3-center">
+                        <img id="right_currency_image" class="w3-image w3-margin-top w3-margin-bottom image_adjust" src="images/usdollar.jpg" alt="Image for currency 2" width="75%">
+                    </div>
+                    <div>
+                        <input type="number" class="dark-mode-inputs click" name="right_currency" min="0" id="right_currency">
+                        <label for="right_currency"  id="right_currency_label">Dollars</label>
+                    </div>
+                </form> 
+            </div>
+        </div>
+        
+        <div class="w3-center w3-margin-top hidden"  id="exchange_display" style="width: 100%;">
+            <h3><span id="left_currency_unit">$</span><span id="left_currency_input">-</span> = <span id="right_currency_unit">$</span><span id="right_currency_input">-</span></h3>
+        </div>
+    </div>
+
+    <!-- Measurement Converter -->
+    <button class="expand-button">Measurement Converter</button>
+
+    <div class="w3-panel w3-margin w3-padding w3-round-xlarge w3-white dark-mode tools" id="measurementConvertor">
+        <h2 class="w3-center">Measurement Converter</h2>
+        <!-- Category Selection -->
+        <div class="w3-center">
+            <label for="measurement_categories">Please select a category</label><br>
+            <select name="measurement_categories" class="dark-mode-inputs" id="measurement_categories">
+                <option value="" disabled selected>Categories</option>
+                <option value="length">Length</option>
+                <option value="temperature">Temperature</option>
+                <option value="time">Time</option>
+            </select>
+        </div>
+        <!-- Length Section -->
+        <div class="w3-center w3-flex hidden" style="flex-wrap: wrap;"  id="length">
+            <div class="w3-third">
+                <div>
+                    <select name="length_1" class="dark-mode-inputs" id="length_1">
+                        <option value="millimetres">Millimeters (mm)</option>
+                        <option value="centimetres">Centimetres (cm)</option>
+                        <option value="metres">Metres (m)</option>
+                        <option value="kilometres">Kilometres (km)</option>
+                        <option value="miles">Miles (mi)</option>
+                        <option value="feet">Feet (ft)</option>
+                        <option value="lightyears">Lightyears (ly)</option>
+                    </select>  
+                </div>
+                <div class="w3-center">
+                    <input type="number" min="0" class="dark-mode-inputs" name="length_input_1" id="length_input_1">
+                </div>
+            </div>
+            <div class="w3-third">
+                <button class="w3-button w3-light-blue w3-round-xlarge w3-margin-top w3-margin-bottom" id="swap_length"><-Swap-></button>
+            </div>
+            <div class="w3-third">
+                <div>
+                    <select name="length_2" class="dark-mode-inputs" id="length_2">
+                        <option value="millimetres">Millimeters (mm)</option>
+                        <option value="centimetres">Centimetres (cm)</option>
+                        <option value="metres">Metres (m)</option>
+                        <option value="kilometres">Kilometres (km)</option>
+                        <option value="miles">Miles (mi)</option>
+                        <option value="feet">Feet (ft)</option>
+                        <option value="lightyears">Lightyears (ly)</option>
+                    </select>  
+                </div>
+                <div>
+                    <input type="number" disabled min="0" class="dark-mode-inputs" name="length_input_2" id="length_input_2">
+                </div>
+            </div>
+        </div>
+
+        <!-- Temperature Section -->
+        <div class="w3-center w3-flex hidden" style="flex-wrap: wrap;" id="temperature">
+            <div class="w3-third">
+                <div>
+                    <select name="temperature_1" class="dark-mode-inputs" id="temperature_1">
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                        <option value="kelvin">Kelvin (°K)</option>
+                    </select>  
+                </div>
+                <div>
+                    <input type="number" class="dark-mode-inputs" name="temperature_input_1" id="temperature_input_1">
+                </div>
+            </div>
+            <div class="w3-third">
+                <button class="w3-button w3-light-blue w3-round-xlarge w3-margin-bottom w3-margin-top" id="swap_temperature"><-Swap-></button>
+            </div>
+            <div class="w3-third">
+                <div>
+                    <select name="temperature_2" class="dark-mode-inputs" id="temperature_2">
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                        <option value="kelvin">Kelvin (°K)</option>
+                    </select>  
+                </div>
+                <div>
+                    <input type="number" class="dark-mode-inputs" disabled name="temperature_input_2" id="temperature_input_2">
+                </div>
+            </div>
+        </div>
+        <!-- Time Section -->
+        <div class="w3-center w3-flex hidden" style="flex-wrap: wrap;" id="time">
+            <div class="w3-third">
+                <div>
+                    <select name="time_1" class="dark-mode-inputs" id="time_1">
+                        <option value="milliseconds">Milliseconds</option>
+                        <option value="seconds">Seconds </option>
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                        <option value="days">Days</option>
+                        <option value="weeks">Weeks</option>
+                        <option value="months">Months</option>
+                        <option value="years">Years</option>
+                    </select>  
+                </div>
+                <div>
+                    <input type="number" class="dark-mode-inputs" min="0" name="time_input_1" id="time_input_1">
+                </div>
+            </div>
+            <div class="w3-third">
+                <button class="w3-button w3-light-blue w3-round-xlarge w3-margin-bottom w3-margin-top" id="swap_time"><-Swap-></button>
+            </div>
+            <div class="w3-third">
+                <div>
+                    <select name="time_2" class="dark-mode-inputs" id="time_2">
+                        <option value="milliseconds">Milliseconds</option>
+                        <option value="seconds">Seconds </option>
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                        <option value="days">Days</option>
+                        <option value="weeks">Weeks</option>
+                        <option value="months">Months</option>
+                        <option value="years">Years</option>
+                    </select>  
+                </div>
+                <div>
+                    <input type="number" class="dark-mode-inputs" min="0" disabled name="time_input_2" id="time_input_2">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Countdown Timer -->
+    <button class="expand-button">Timer</button>
+
+    <div class="w3-panel w3-margin w3-padding w3-round-xlarge w3-white w3-center dark-mode tools" id="timer">
+        <!-- Inputs -->
+        <h2 class="w3-center">Timer</h2>
+        <label for="minutes">Minutes:</label>
+        <input type="number" class="dark-mode-inputs" min="0" max="10" step="1" id="minutes" value="1">
+
+        <label for="seconds">Seconds:</label>
+        <input type="number" class="dark-mode-inputs" min="0" max="60" step="1" id="seconds" value="0">
+        <!-- buttons -->
+        <div class="w3-section">
+            <button class="w3-button w3-round w3-green" id="start_btn">Start</button>
+            <button class="w3-button w3-round w3-red" id="stop_btn" disabled>Stop</button>
+        </div>
+
+        <div class="w3-padding w3-light-blue w3-text-white w3-xlarge"  id="timerDisplay">00:00</div>
+
+        <!-- Progress Bar -->
+        <div class="w3-light-grey w3-margin-top">
+            <div id="progress-bar"  style="height:12px;width:0%"></div>
+        </div>
+    </div>
+
+    <!-- Map and Location Tools -->
+    <button class="expand-button">Map and Location Tools</button>
+    <div class="w3-panel w3-margin w3-padding w3-round-xlarge w3-white dark-mode tools" id="map_tool">
+        <h2 class="w3-center">Map and Location Tools</h2>
+        <div>
+            <!-- Map goes in here when initialised -->
+            <div id="map">
+
+            </div>
+            <h4 class="w3-center"><span id="selected_location">Click the map to select a location.</span><br><span id="latitude"></span><br><span id="longitude"></span></h4>
+        </div>
+        <!-- Weather Card -->
+        <div class="w3-card w3-center w3-flex hidden" style="flex-wrap: wrap; align-items: center;" id="forecast_card">
+            <div class="w3-half w3-center center_image">
+                <img src="" alt="weather forecast image" id="forecast_image" width="30%">
+            </div>
+            <div class="w3-half" id="weather_info">
+                <p>Current Temperature: <b><span id="current_temp"></span>°C</b></p>
+                <p>Cloud Cover: <b><span id="cloud_cover"></span>%</b></p>
+                <p>Precipitation: <b><span id="precipitation"></span>mm</b></p>
+                <p>Most Recent Reading: <b><span id="current_time"></span></b></p>
+                <p>Sunrise Time: <b><span id="sunrise_time"></span></b></p>
+                <p>Sunset Time: <b><span id="sunset_time"></span></b></p>
+            </div>
+        </div>
+        <!-- Log Coordinates and Distance Calculator -->
+        <div class="w3-card w3-center w3-margin">
+            <div class="w3-flex" style="justify-content: space-around;">
+                <div>
+                    <button class="w3-button w3-yellow w3-round-xlarge w3-margin-top" onclick="logCoordinates('location_1')">Log Location 1</button><br>
+                    <span id="location_1_coordinates"></span>
+                </div>
+                <div>
+                    <button class="w3-button w3-yellow w3-round-xlarge w3-margin-top" onclick="logCoordinates('location_2')">Log Location 2</button><br>
+                    <span id="location_2_coordinates"></span>
+                </div>
+                
+            </div>
+            <div class="w3-center w3-margin-bottom">
+                <button class="w3-button w3-red w3-round-xlarge w3-margin-bottom" onclick="calculateDistance(location_1_latitude, location_1_longitude, location_2_latitude, location_2_longitude)">Calculate Distance</button><br>
+                <h4 class="hidden" id="distance_text">The calculated distance between the two selected locations is...<br><span id="calculated_distance"></span></h4>
+            </div>
+            
+
+        </div>
+    </div>
+    <!-- scripts for leaflet and for project script -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script src="scripts/script.js"></script>
+    
+</body>
+</html>
